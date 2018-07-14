@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/wekkit/guavabobot#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "dotenv": "^6.0.0",
     "nodemon": "^1.18.1",
+    "puppeteer": "^1.6.0",
     "telegraf": "^3.21.2"
   },
   "devDependencies": {
