@@ -5,9 +5,8 @@ const checkClassUrl = async (email, password, url) => {
   const browser = await puppeteer.launch()
   const page = await browser.newPage()
   try {
-    await page.goto('https://guavapass.com')
-    await page.click('.gp-button--secondary.gp-button--small')
-    await page.waitFor(1000)
+    await page.goto('https://guavapass.com/users/login')
+    await page.click('#user_email')
     await page.type('#user_email', email)
     await page.type('#user_password', password)
     await page.click('input.gp-button--green.gp-button--block')
@@ -29,7 +28,7 @@ const checkClassUrl = async (email, password, url) => {
   } catch (e) {
     console.warn(e)
     console.log('error. taking screenshot...')
-    await page.screenshot({ path: 'errorshot.png' })
+    await page.screenshot({ path: '../screenshots/errorshot.png' })
     await browser.close()
     return 'oops! there was an error.'
   }
