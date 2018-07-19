@@ -62,3 +62,6 @@ typings/
 
 # screenshots
 screenshots
+
+# pouchdb
+db
