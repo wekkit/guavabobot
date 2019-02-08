@@ -23,14 +23,20 @@ const checkClassUrl = async (email, password, url) => {
     )
     const bookLink = await page.$eval('.book a', el => el.getAttribute('href'))
     await browser.close()
-    const status = bookLink !== '#' ? 'AVAILABLE' : 'NOT AVAILABLE'
-    return `${className.toLowerCase()} on ${classDate.toLowerCase()} ${classTime.toLowerCase()} is ${status}!`
+    const status = bookLink !== '#'
+    const statusText = status ? 'AVAILABLE' : 'NOT AVAILABLE'
+    const message = `${className.toLowerCase()} on ${classDate.toLowerCase()} ${classTime.toLowerCase()} is ${statusText}!`
+    return {
+      message,
+      status,
+      error: null
+    }
   } catch (e) {
     console.warn(e)
     console.log('error. taking screenshot...')
     await page.screenshot({ path: '../screenshots/errorshot.png' })
     await browser.close()
-    return 'oops! there was an error.'
+    return { status: null, error: true, message: 'Oops! There was an error.' }
   }
 }
 
